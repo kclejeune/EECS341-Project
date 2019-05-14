@@ -1,12 +1,38 @@
-# EECS341 Final Project
-
-Kennan LeJeune, David Blincoe, Ellis Saupe, and Sam Jenkins
-
-## Overview:
+# RecipIO: like reddit, but for recipes
 
 RecipIO is a recipe sharing and discussion forum written using Angular 7 (frontend), Node.js, and Express.js (backend). Users are able to create accounts, upload recipes, write comments, and vote on recipes and comments. Users can additionally search for recipes based on recipe ingredients, tags, name, description, or author. The website displays recipes sorted by user vote ratings. All API endpoints are supported on the server side with stored procedures within the required MySQL database.
 
-## Project Requirements
+## Deployment
+
+### Prerequisites
+
+This project requires nodejs, npm, and the Angular command line tools. These can be installed on (debian based) linux systems with 
+
+```bash
+sudo apt install npm
+sudo npm install @angular/cli -g
+```
+
+For other types of linux, I'll assume you're sufficiently well-acquainted with your package manager of choice to fulfill the necessary requirements.
+
+## Running the Project
+
+From the project directory, run the following to install the dependencies and build the project. 
+
+```bash
+npm install
+ng build
+```
+
+The build artifacts are stored in /dist.  To deploy the application, run 
+
+```bash
+node server.js
+```
+
+from the root project directory. The application can be accessed at `localhost:33201`, with the api available from `localhost:33201/api/`.
+
+## Project Report
 
 ### CRUD requirements
 
@@ -32,37 +58,10 @@ RecipIO is a recipe sharing and discussion forum written using Angular 7 (fronte
 - David and Kennan - Developed Material Design UI and an API server using Node.js and Express.js to host both the back end API and front end components from the same port.
 - Ellis and Sam - created database structure and configuration.  Wrote stored procedures to be called by the API
 
-
 ## Lessons & Challenges
 
 - Passing strings to stored procedures requires manually adding quotation wrapping in order to correctly execute the query, or else the stored procedure fails silently. Debugging this was...unpleasant. 
 - We found that good API design is crucial. Without careful thought, certain endpoints can overlap with each other, making for a confusing experience when debugging.
 - We learned how to create and use stored procedures, and quickly realized how they are useful when constructing an API. By providing an abstracted layer, we were able to completely change the function of our application by modifying a stored procedure without ever touching the client side codebase.
 - Learned how to create a temporary table and how to parse a delimited string in SQL for more complex queries
-
-## Deployment
-
-### Prerequisites
-
-This project requires nodejs, npm, and the Angular command line tools. These can be installed on linux systems with 
-
-```bash
-sudo apt install npm
-sudo npm install @angular/cli -g
-```
-
-From the project directory, run the following to install the dependencies and build the project. 
-
-```bash
-npm install
-ng build
-```
-
-The build artifacts are stored in /dist.  To deploy the application, run 
-
-```bash
-node server.js
-```
-
-from the root project directory. The application can be accessed at `localhost:33201`.
 
